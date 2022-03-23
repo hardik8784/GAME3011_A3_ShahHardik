@@ -42,7 +42,7 @@ public class Tile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        button.onClick.AddListener(()=> Board.Instance.Select(this));
     }
 
     // Update is called once per frame
@@ -50,4 +50,6 @@ public class Tile : MonoBehaviour
     {
         
     }
+
+
 }
