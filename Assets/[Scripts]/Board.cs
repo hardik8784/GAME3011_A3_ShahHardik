@@ -17,6 +17,12 @@ public class Board : MonoBehaviour
 {
     public static Board Instance { get; private set; }
 
+    [SerializeField]
+    private AudioClip collectSound;
+
+    [SerializeField]
+    private AudioSource audioSource;
+
     public Row[] rows;
 
     public Tile[,] Tiles { get; private set; }
@@ -57,6 +63,7 @@ public class Board : MonoBehaviour
                 Tiles[x, y] = Tile;
             }
         }
+
     }
 
     // Update is called once per frame
@@ -77,8 +84,18 @@ public class Board : MonoBehaviour
     {
         if(!_selection.Contains(tile))
         {
-            _selection.Add(tile);
+            //if (_selection.Count > 0)
+            //{
+            //    //TODO:
+            //    //Implement the behaviour not to swap if the tiles are farther
+            //}
+            //else
+            //{
+                _selection.Add(tile);
+            //}
         }
+
+
 
         if(_selection.Count <2)
         {
@@ -165,11 +182,15 @@ public class Board : MonoBehaviour
                 {
                     deafaultSequence.Join(connectedTile.icon.transform.DOScale(Vector3.zero, Duration));
 
+                    audioSource.PlayOneShot(collectSound);
+
+                    ScoreCounter.Instance.Score += tile.Item.value * connectedTiles.Count;
+
                     await deafaultSequence.Play()
                                           .AsyncWaitForCompletion();
                 }
 
-                ScoreCounter.Instance.Score += tile.Item.value * connectedTiles.Count;
+             
 
                 var inflateSequence = DOTween.Sequence();
 
@@ -182,6 +203,9 @@ public class Board : MonoBehaviour
 
                 await inflateSequence.Play()
                                      .AsyncWaitForCompletion();
+
+                x = 0;
+                y = 0;
             }
         }
     }
