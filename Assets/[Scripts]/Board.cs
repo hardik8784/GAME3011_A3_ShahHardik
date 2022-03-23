@@ -169,6 +169,8 @@ public class Board : MonoBehaviour
                                           .AsyncWaitForCompletion();
                 }
 
+                ScoreCounter.Instance.Score += tile.Item.value * connectedTiles.Count;
+
                 var inflateSequence = DOTween.Sequence();
 
                 foreach(var connectedTile in connectedTiles)
