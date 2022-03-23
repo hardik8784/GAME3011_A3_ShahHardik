@@ -1,18 +1,21 @@
+///----------------------------------------------------------------------------------
+///   GAME3011_A3_ShahHardik
+///   Item.cs
+///   Author            : Hardik Dipakbhai Shah
+///   Last Modified     : 2022/03/23
+///   Description       : 
+///   Revision History  : 1st ed.                    
+///----------------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[CreateAssetMenu(menuName ="Match3/Item")]
+public class Item : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int value;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Sprite sprite;
 }
+

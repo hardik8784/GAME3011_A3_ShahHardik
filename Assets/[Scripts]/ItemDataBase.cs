@@ -1,43 +1,22 @@
 ///----------------------------------------------------------------------------------
 ///   GAME3011_A3_ShahHardik
-///   Tile.cs
+///   ItemDataBase.cs
 ///   Author            : Hardik Dipakbhai Shah
 ///   Last Modified     : 2022/03/23
 ///   Description       : 
 ///   Revision History  : 1st ed.                    
 
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Tile : MonoBehaviour
+public class ItemDataBase 
 {
-    public int x;
-    public int y;
+    public static Item[] Items { get; private set; }
 
-    private Item _item;
-    public Item Item
-    {
-        get => _item;
-
-        set
-        {
-            if(_item == value)
-            {
-                return;
-            }
-            else
-            {
-                _item = value;
-
-                icon.sprite = _item.sprite;
-            }
-        }
-    }
-
-    public Image icon;
-    public Button button;
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void Initialize() => Items = Resources.LoadAll<Item>("Items/");
 
     // Start is called before the first frame update
     void Start()
