@@ -27,7 +27,7 @@ public class Board : MonoBehaviour
     //private Tile _selectedTile1;
     //private Tile _selectedTile2;
 
-    [SerializeField] private float tweenDuration = 0.1f;
+    [SerializeField] private float Duration = 0.1f;
 
     private readonly List<Tile> _selection = new List<Tile>();
 
@@ -60,9 +60,17 @@ public class Board : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if(!Input.GetKeyDown(KeyCode.A))
+        {
+            return;
+        }
+
+        foreach(var connectedTile in Tiles[0,0].GetConnectedTiles())
+        {
+            connectedTile.icon.transform.DOScale(1.25f, Duration).Play();
+        }
     }
 
     public async void Select(Tile tile)
@@ -94,8 +102,8 @@ public class Board : MonoBehaviour
 
         var sequence = DOTween.Sequence();
 
-        sequence.Join(icon1.transform.DOMove(icon2Transform.position, tweenDuration))
-                .Join(icon2Transform.DOMove(icon1Transform.position, tweenDuration));
+        sequence.Join(icon1.transform.DOMove(icon2Transform.position, Duration))
+                .Join(icon2Transform.DOMove(icon1Transform.position, Duration));
 
         await sequence.Play()
                           .AsyncWaitForCompletion();
@@ -110,5 +118,15 @@ public class Board : MonoBehaviour
 
         tile1.Item = tile2.Item;
         tile2.Item = tile1Item;
+    }
+
+    private void Canpop()
+    {
+        return;
+    }
+
+    private void Pop()
+    {
+        return;
     }
 }
