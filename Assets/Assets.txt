@@ -1,0 +1,29 @@
+Name: DOTween (HOTween v2)
+{
+License: DOTween (HOTween v2) Demigiant
+Source: Unity Asset store
+Publisher : https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676
+}
+
+
+###############################################################################
+
+
+	Animal pack
+	by Kenney Vleugels for Kenney (www.kenney.nl)
+
+			------------------------------
+
+	License (Creative Commons Zero, CC0)
+	http://creativecommons.org/publicdomain/zero/1.0/
+
+	You may use these graphics in personal and commercial projects.
+	Credit (Kenney or www.kenney.nl) would be nice but is not mandatory.
+
+			------------------------------
+
+	Donate:   http://donate.kenney.nl/
+	Request:  http://request.kenney.nl/
+
+
+###############################################################################
