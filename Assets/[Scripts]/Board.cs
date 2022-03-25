@@ -52,6 +52,7 @@ public class Board : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         Instance = this;
 
         currentTime = startingTime;
@@ -115,9 +116,10 @@ public class Board : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
+            Time.timeScale = 0;
 
             UI.SetActive(true);
-            
+            this.gameObject.SetActive(false);
             
         }
         //if(!Input.GetKeyDown(KeyCode.A))
