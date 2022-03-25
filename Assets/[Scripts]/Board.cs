@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Board : MonoBehaviour
 {
@@ -37,15 +39,29 @@ public class Board : MonoBehaviour
 
     private readonly List<Tile> _selection = new List<Tile>();
 
+    float currentTime = 0.0f;
+    float startingTime = 60.0f;
+
+    [SerializeField]
+    private TextMeshProUGUI TimeText;
+
+    public GameObject UI;
+
+   
+
     private void Awake()
     {
         Instance = this;
+
+        currentTime = startingTime;
     }
 
 
     // Start is called before the first frame update
     private void Start()
     {
+      
+
         Tiles = new Tile[rows.Max(Row => Row.tiles.Length), rows.Length]; //(Row => Row.tiles.length), rows.Length];
         
         for(var y=0; y< Height; y++)
@@ -69,6 +85,34 @@ public class Board : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if(currentTime > 0)
+        {
+            currentTime -= 1 * Time.deltaTime;
+            //Debug.Log("CurrentTime : " + currentTime);
+
+            TimeText.SetText("Time : 00 : " + currentTime.ToString("0"));
+
+            TimeText.color = Color.white;
+        }
+
+        //currentTime -= 1 * Time.deltaTime;
+        ////Debug.Log("CurrentTime : " + currentTime);
+
+        //TimeText.SetText("Time : " + currentTime.ToString("0"));
+
+        if(currentTime <10 )
+        {
+            TimeText.color = Color.red;
+        }
+
+        if (currentTime <= 0)
+        {
+            currentTime = 0;
+
+            UI.SetActive(true);
+   
+            
+        }
         //if(!Input.GetKeyDown(KeyCode.A))
         //{
         //    return;
