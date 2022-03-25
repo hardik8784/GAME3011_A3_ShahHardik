@@ -14,6 +14,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Board : MonoBehaviour
 {
@@ -105,12 +106,18 @@ public class Board : MonoBehaviour
             TimeText.color = Color.red;
         }
 
+        if(ScoreCounter.Instance.Score >= 2000)
+        {
+             StartCoroutine(ExampleCoroutine());
+           
+        }
+
         if (currentTime <= 0)
         {
             currentTime = 0;
 
             UI.SetActive(true);
-   
+            
             
         }
         //if(!Input.GetKeyDown(KeyCode.A))
@@ -122,6 +129,19 @@ public class Board : MonoBehaviour
         //{
         //    connectedTile.icon.transform.DOScale(1.25f, Duration).Play();
         //}
+    }
+
+    IEnumerator ExampleCoroutine()
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5);
+        //Time.timeScale = 0;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Win");
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
 
     public async void Select(Tile tile)
